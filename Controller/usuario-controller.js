@@ -6,6 +6,18 @@ const criar = async (nome, senha, pontos, latitude, longitude) => {
 
     const usuario = new Usuario({nome: nome, senha: senha, pontos: pontos, latitude: latitude, longitude: longitude});
     return usuario.save()
+
+    const ret = await usuario.save();
+    return ret;
+}
+
+var usuario = [];
+
+const login = (nome, senha) => {
+        const valido = Usuario.findOne({nome: nome, senha: senha});
+        if (valido) {
+            return { valido: true };
+        } else return { valido: false };
 }
 
 const atualizar = async (id, new_user)=> {
